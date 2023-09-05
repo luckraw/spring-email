@@ -13,16 +13,14 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class EmailService {
 
-
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     public void sendEmail(Email email) throws MessagingException {
-
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setFrom(email.getFrom());
-        helper.setTo(email.getFrom());
+        helper.setTo(email.getTo());
         helper.setSubject(email.getSubject());
         helper.setText(email.getBody());
 
